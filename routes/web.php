@@ -20,6 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+//Jobsheet 4
 Route::get('/level', [LevelController::class, 'index']);
 
 Route::get('/kategori', [KategoriController::class, 'index']);
@@ -45,3 +47,7 @@ Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan'])->na
 
 //pembenahan
 Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('/user/hapus');
+
+
+//JOBSHEET 5
+Route::get('/kategori', [KategoriController::class, 'index']);

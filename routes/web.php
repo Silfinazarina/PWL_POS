@@ -51,3 +51,11 @@ Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('/user/ha
 
 //JOBSHEET 5
 Route::get('/kategori', [KategoriController::class, 'index']);
+
+Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
+Route::post('/kategori', [KategoriController::class, 'store']);
+
+Route::get('kategori/edit/{id}', [KategoriController::class, 'edit'])->name('/kategori/edit');
+Route::put('kategori/edit_simpan/{id}', [KategoriController::class, 'edit_simpan'])->name('/kategori/edit_simpan');
+
+Route::get('/hapus/{id}', [KategoriController::class, 'hapus'])->name('/kategori/hapus');

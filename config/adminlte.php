@@ -322,6 +322,11 @@ return [
             'label' => 4,
             'label_color' => 'success',
         ],
+        [
+            'text' => 'Manage Categori',
+            'url' => 'admin/manage-categori',
+            'icon' => 'fa fa-database'
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

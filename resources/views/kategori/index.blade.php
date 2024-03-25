@@ -11,6 +11,9 @@
         <div class="card">
             <div class="card-header">Manage Kategori</div>
             <div class="card-body">
+                <a href="{{ route('kategori.create')}}" 
+                class="btn btn-primary btn-xs mb-3">+ Add Category
+                </a>
                 {{ $dataTable->table() }}
             </div>
         </div>

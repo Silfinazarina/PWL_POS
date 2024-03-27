@@ -4,25 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\LevelModel;
 
 class LevelController extends Controller
 {
-    public function index(){
-        //proses insert
-        // DB::insert('insert into m_level(level_kode, level_nama, created_at) 
-        //     values (?,?,?)', ['CUS', 'Pelanggan', now()]);
-        // return 'Insert data baru berhasil';
 
-        //proses update
-        // $row = DB::update('update m_level set level_nama = ? where level_kode=?', ['Customer', 'CUS']);
-        // return 'Update data berhasil. Jumlah data yang diupdate: '.$row.' baris';
+    public function tambah()
+    {
+        // Mendapatkan nilai id lanjutan dari model
+        $nextLevelId = LevelModel::getLastLevelId();
 
-        //proses delete
-        // $row = DB::delete('delete from m_level where level_kode = ?', ['CUS']);
-        // return 'Delete data berhasil. Jumlah data yang dihapus';
-
-        //menampilkan data
-        $data = DB::select('select * from m_level');
-        return view('level', ['data'=> $data]);
+        // Mengirimkan nilai id lanjutan ke view
+        return view('level.level_tambah', compact('nextLevelId'));
     }
 }
+

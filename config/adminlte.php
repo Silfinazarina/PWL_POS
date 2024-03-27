@@ -315,17 +315,20 @@ return [
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
+        [   'text' => ' Dashboard',
+            'url' => ' ',
+            'icon' => 'fas fa-tachometer-alt',
+        ],
+        [   'text' => 'Category',
+            'url' => 'kategori/',
+            'icon' => 'far fa-fw fa-file'
+        ],
         [
             'text' => 'pages',
             'url' => 'admin/pages',
             'icon' => 'far fa-fw fa-file',
             'label' => 4,
             'label_color' => 'success',
-        ],
-        [
-            'text' => 'Manage Categori',
-            'url' => 'admin/manage-categori',
-            'icon' => 'fa fa-database'
         ],
         ['header' => 'account_settings'],
         [

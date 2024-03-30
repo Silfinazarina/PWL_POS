@@ -7,7 +7,7 @@
                 <h2>Membuat Daftar User</h2>
             </div>
             <div class="float-right">
-                <a class="btn btn-secondary" href="{{ route('m_user/index') }}">Kembali</a>
+                <a class="btn btn-secondary" href="{{ route('m_user.index') }}">Kembali</a>
             </div>
         </div>
     </div>
@@ -25,6 +25,17 @@
 
     <form action="{{ route('m_user.store') }}" method="POST">
         @csrf
+        {{-- penambahan kolom level_id pada form tambah user --}}
+        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Level ID</strong>
+            <select class="form-control" name="levelID" id="levelID" >
+                @foreach ($levelIds as $levelId)
+                    <option>{{ $levelId }}</option>
+                @endforeach
+            </select>
+          </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Username:</strong>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LevelModel;
 use App\Models\m_user;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,9 @@ class POSController extends Controller
      */
     public function create()
     {
-        return view('m_user.create');
+        //penambahan kode untuk mendapatkan level_id yang ada dalam tabel m_level
+        $levelIds = LevelModel::pluck('level_id');
+        return view('m_user.create', ['levelIds' => $levelIds]);
     }
 
     /**

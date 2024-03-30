@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\KategoriDataTable;
 use App\Models\KategoriModel;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,19 +14,41 @@ class KategoriController extends Controller
         return $dataTable->render('kategori.index');
     }
 
-    public function create(){
+    public function create()
+    {
         return view('kategori.create');
     }
+    
+    public function store(Request $request): RedirectResponse
+    {
+        //modifikasi prak B js 6 (validate)
+        $validated = $request->validate([
+            'kodeKategori' => 'required',
+            'namaKategori' => 'required',
+        ]);  
 
-    public function store(Request $request){
         KategoriModel::create([
             'kategori_kode'=> $request->kodeKategori,
             'kategori_nama'=> $request->namaKategori,
-
         ]);
-        return redirect('/kategori');
+        return redirect('/kategori'); 
+
+        
+        //validateBag
+        // $request->validateWithBag('post', [
+        //     'kategori_kode' => ['required'],
+        //     'kategori_nama' => ['required'],
+        // ]);
+
+        //bail
+        // $request->validate([
+        //     'kategori_kode' => 'bail|required|unique:post|max:255',
+        //     'kategori_name' => 'required',
+        // ]);
+
     }
 
+    
     public function edit($id)
     {
         $kategori = KategoriModel::find($id);

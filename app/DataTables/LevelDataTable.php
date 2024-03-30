@@ -2,17 +2,15 @@
 
 namespace App\DataTables;
 
-use App\Models\KategoriModel;
+use App\Models\LevelModel;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor; 
-use Yajra\DataTables\Html\Editor\Fields; 
 use Yajra\DataTables\Services\DataTable;
 
-class KategoriDataTable extends DataTable
+class LevelDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,11 +20,11 @@ class KategoriDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action', function ($kategori) {
+        ->addColumn('action', function ($level) {
             return '<div class="btn-group" role="group">' .
-            '<a href="' . route('kategori.edit', ['id' => $kategori->kategori_id]) . 
+            '<a href="' . route('level.edit', ['id' => $level->level_id]) . 
                 '" class="btn btn-warning btn-sm">Edit</a>' .
-            '<a href="' . route('kategori.hapus', ['id' => $kategori->kategori_id]) . 
+            '<a href="' . route('level.hapus', ['id' => $level->level_id]) . 
                 '" class="btn btn-danger btn-sm">Delete</a>' .
             '</div>';
         })
@@ -36,7 +34,7 @@ class KategoriDataTable extends DataTable
     /**
      * Get the query source of dataTable.
      */
-    public function query(KategoriModel $model): QueryBuilder
+    public function query(LevelModel $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -47,7 +45,7 @@ class KategoriDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('kategori-table')
+            ->setTableId('level-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -69,9 +67,9 @@ class KategoriDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('kategori_id'),
-            Column::make('kategori_kode'),
-            Column::make('kategori_nama'),
+            Column::make('level_id'),
+            Column::make('level_kode'),
+            Column::make('level_nama'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')
@@ -87,6 +85,6 @@ class KategoriDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Kategori_' . date('YmdHis');
+        return 'User_' . date('YmdHis');
     }
 }

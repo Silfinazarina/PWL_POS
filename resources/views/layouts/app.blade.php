@@ -28,9 +28,11 @@
 
 {{-- Create a common footer --}}
 @section('footer')
+<div class="container">
     <div class="float-right">
         Version: {{ config('app.version', '1.0.0') }}
     </div>
+</div>
 
     <strong>
         <a href="{{ config('app.company_url', '#') }}">

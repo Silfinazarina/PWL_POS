@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\mUserDataTable;
 use App\Models\LevelModel;
 use App\Models\m_user;
 use Illuminate\Http\Request;
@@ -11,11 +12,14 @@ class POSController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(mUserDataTable $dataTable)
     {
         //fungsi eloquent menampilkan data menggunakan pagination
-        $useri = m_user::all(); // Mengambil semua isi tabel
-        return view('m_user.index', compact('useri'))->with('i');
+        // $useri = m_user::all(); // Mengambil semua isi tabel
+        // return view('m_user.index', compact('useri'))->with('i');
+
+        //mengubahnya menggunakan datatable
+        return $dataTable->render('m_user.index');
     }
 
     /**

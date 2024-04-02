@@ -5,6 +5,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\POSController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +66,7 @@ Route::get('level/hapus/{id}', [LevelController::class, 'hapus'])->name('level.h
 
 //resource prak D js 6
 Route::resource('m_user', POSController ::class);
+
+
+//jobsheet 7
+Route::get('/', [WelcomeController::class, 'index']);

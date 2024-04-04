@@ -1,38 +1,53 @@
-@extends('layouts.app')
+@extends('layouts.template')
 
-{{-- Customize layout sections --}}
-@section('subtitle', 'Level')
-@section('content_header_title', 'Level')
-@section('content_header_subtitle', 'Update')
-
-{{-- content body main page content --}}
 @section('content')
-    <div class="container">
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Edit Level</h3>
-            </div>
-
-            <form method="post" action="{{ route('level.edit_simpan', $data->level_id)}}">
+    <div class="card card-outline card-primary">
+        <div class="card-header">
+            <h3 class="card-title">{{ $page->title }}</h3>
+            <div class="card-tools"></div>
+        </div>
+        <div class="card-body">
+            @empty($level)
+                <div class="alert alert-danger alert-dismissible">
+                    <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5>
+                    Data yang Anda cari tidak ditemukan.
+                </div>
+                <a href="{{ url('level') }}" class="btn btn-sm btn-default mt-2">Kembali</a>
+            @else
+            <form method="post" action="{{ url('/level/'.$level->level_id) }}" class="form-horizontal">
                 @csrf
-                @method('PUT')
-
-                <div class="card-body">
-                  <div class="card-body">
-                    <form>
-                      <div class="form-group">
-                        <label>Level Kode</label>
-                        <input type="text" class="form-control" name="levelKode" id="levelKode" value="{{$data->level_kode}}">
-                      </div>
-                      <div class="form-group">
-                        <label>Nama Level</label>
-                        <input type="text" class="form-control" name="levelNama" id="levelNama" value="{{$data->level_nama}}">
-                      </div>
-                        <button type = "submit" class ="btn btn-info">Submit</button>
-                      </div>
-                    </form>
-                  </div>
-            </form>
+                    {!! method_field('PUT') !!} 
+                    <div class="form-group row">
+                        <label class="col-1 control-label col-form-label">Level Kode</label>
+                        <div class="col-11">
+                            <input type="text" class="form-control" id="levelKode" name="levelKode" value="{{ old('levelKode', $level->level_kode) }}" required>
+                            @error('levelKode')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-1 control-label col-form-label">Nama Level</label>
+                        <div class="col-11">
+                            <input type="text" class="form-control" id="levelNama" name="levelNama" value="{{ old('levelNama', $level->level_nama) }}" required>
+                            @error('levelNama')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-1 control-label col-form-label"></label>
+                        <div class="col-11">
+                            <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                            <a class="btn btn-sm btn-default ml-1" href="{{ url('level') }}">Kembali</a>
+                        </div>
+                    </div>
+                </form>
+            @endempty
         </div>
     </div>
 @endsection
+@push('css')
+@endpush
+@push('js')
+@endpush

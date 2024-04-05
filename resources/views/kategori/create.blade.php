@@ -7,22 +7,22 @@
             <div class="card-tools"></div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ url('level') }}" class="form-horizontal">
+            <form method="POST" action="{{ url('kategori') }}" class="form-horizontal">
                 @csrf
                 <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Kode Level</label>
+                    <label class="col-1 control-label col-form-label">Kode Kategori</label>
                     <div class="col-11">
-                        <input type="text" class="form-control" id="levelKode" name="levelKode" value="{{ old('levelKode') }}" required>
-                        @error('levelKode')
+                        <input type="text" class="form-control" id="kategoriKode" name="kategoriKode" value="{{ old('kategoriKode') }}" required>
+                        @error('kategoriKode')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-1 control-label col-form-label">Nama Level</label>
+                    <label class="col-1 control-label col-form-label">Nama Kategori</label>
                     <div class="col-11">
-                        <input type="text" class="form-control" id="levelNama" name="levelNama" required>
-                        @error('levelNama')
+                        <input type="text" class="form-control" id="kategoriNama" name="kategoriNama" required>
+                        @error('kategoriNama')
                             <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
                     </div>

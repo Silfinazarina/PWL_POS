@@ -19,8 +19,8 @@ class LevelController extends Controller
             'title'=> 'Daftar level user yang terdaftar dalam sistem'
         ];
 
-        $activeMenu = 'level';       //set menu yang sedang aktif
-        $level = LevelModel::all(); //ambil data level untuk filter level
+        $activeMenu = 'level';          //set menu yang sedang aktif
+        $level = LevelModel::all();     //ambil data level untuk filter level
         return view('level.index', ['breadcrumb' => $breadcrumb, 'page'=>$page, 
             'level'=> $level, 'activeMenu' => $activeMenu]);
     }
@@ -29,15 +29,9 @@ class LevelController extends Controller
     public function list(Request $request)
     {
         $level = LevelModel::select('level_id', 'level_kode', 'level_nama');
-                   
-
-        //Filter data user berdasarkan level_id
-        if ($request->level_id) {
-            $level->where('level_id', $request->level_id);
-        }
 
         return DataTables::of($level)
-            ->addIndexColumn() // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
+            ->addIndexColumn()                      // menambahkan kolom index / no urut (default nama kolom: DT_RowIndex)
             ->addColumn('aksi', function ($level) { // menambahkan kolom aksi
                 $btn = '<a href="'.url('/level/' . $level->level_id).'" class="btn btn-info btn-sm">Detail</a> ';
                 $btn .= '<a href="'.url('/level/' . $level->level_id . '/edit').'" class="btn btn-warning btn-sm">Edit</a> ';
@@ -62,7 +56,6 @@ class LevelController extends Controller
             'title'=> 'Tambah level baru'
         ];
 
-        // $level = LevelModel::all(); //ambil data level untuk ditampilkan di form
         $activeMenu = 'level'; //set menu yang sedang aktif
         return view('level.create', ['breadcrumb' => $breadcrumb, 'page'=>$page, 'activeMenu' => $activeMenu]);
     }
@@ -105,7 +98,6 @@ class LevelController extends Controller
     public function edit(String $id)
     {
         $level = LevelModel::find($id);
-        // $level = LevelModel::all();
 
         $breadcrumb = (object) [
             'title' => 'Edit Level',

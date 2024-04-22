@@ -19,4 +19,5 @@ class m_user extends Model
     'nama' ,
     'password',
     ];
+
 }

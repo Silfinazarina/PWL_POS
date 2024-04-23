@@ -83,7 +83,6 @@ class StokController extends Controller
             'user_id' => 'required|int',
             'stok_tanggal' => 'required',
             'stok_jumlah' => 'required',
-
         ]);
 
         // Membuat data stok baru

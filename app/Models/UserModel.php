@@ -2,46 +2,71 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class UserModel extends Model implements Authenticatable
+class UserModel extends Authenticatable implements JWTSubject
 {
-    use HasFactory;
+    // use HasFactory;
 
-    protected $table = 'm_user';
-    protected $primaryKey = 'user_id';
-
-    protected $fillable = ['level_id', 'username', 'nama', 'password'];
-
-    public function getAuthIdentifierName()
+    public function getJWTIdentifier()
     {
-        return 'user_id'; // Sesuaikan dengan nama kolom primary key
+        return $this->getKey();
     }
 
-    public function getAuthIdentifier()
+    public function getJWTCustomClaims()
     {
-        return $this->{$this->getAuthIdentifierName()};
+        return [];
     }
 
-    public function getAuthPassword()
-    {
-        return $this->password;
-    }
+    protected $table = 'm_user';    //Mendefinisikan nama tabel yang digunakan oleh model ini
+    protected $primaryKey = 'user_id'; //Mendefinisikan primary key dari tabel yang digunakan
 
-    public function getRememberToken()
-    {
-        return null;
-    }
+    protected $fillable = ['level_id', 'username','nama', 'password'];
 
-    public function setRememberToken($value)
-    {
-        // Do nothing
-    }
-
-    public function getRememberTokenName()
-    {
-        return null;
+    public function level(): BelongsTo{
+        return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
     }
 }
+
+
+
+    //jobsheet 9
+    // use HasFactory;
+
+    // protected $table = 'm_user';
+    // protected $primaryKey = 'user_id';
+
+    // protected $fillable = ['level_id', 'username', 'nama', 'password'];
+
+    // public function getAuthIdentifierName()
+    // {
+    //     return 'user_id'; // Sesuaikan dengan nama kolom primary key
+    // }
+
+    // public function getAuthIdentifier()
+    // {
+    //     return $this->{$this->getAuthIdentifierName()};
+    // }
+
+    // public function getAuthPassword()
+    // {
+    //     return $this->password;
+    // }
+
+    // public function getRememberToken()
+    // {
+    //     return null;
+    // }
+
+    // public function setRememberToken($value)
+    // {
+    //     // Do nothing
+    // }
+
+    // public function getRememberTokenName()
+    // {
+    //     return null;
+    // }
+// }

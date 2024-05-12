@@ -61,3 +61,10 @@ Route::post('barang', [BarangController::class, 'store']);
 Route::get('barang/{barang}', [BarangController::class, 'show']);
 Route::put('barang/{barang}', [BarangController::class, 'update']);
 Route::delete('barang/{barang}', [BarangController::class, 'destroy']);
+
+//josbsheet11
+Route::post('/register1', App\Http\Controllers\Api\RegisterController::class)->name('register1');
+Route::post('/barang1', App\Http\Controllers\Api\BarangController::class)->name('barang1');
+Route::get('/barang1', [App\Http\Controllers\Api\BarangController::class, 'index'])->name('barang1');
+Route::post('/penjualan1', App\Http\Controllers\Api\PenjualanController::class)->name('penjualan1');
+Route::get('/penjualan1', [App\Http\Controllers\Api\PenjualanController::class, 'index'])->name('penjualan1');

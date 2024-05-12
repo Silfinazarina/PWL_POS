@@ -3,20 +3,24 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\UserModel;
+use App\Models\PenjualanModel;
 use Illuminate\Http\Request;
-USE Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator;
 
-class RegisterController extends Controller
+class PenjualanController extends Controller
 {
+    public function index(){
+        return PenjualanModel::all();
+    }
+
     public function __invoke(Request $request)
     {
         //set validation
         $validator = Validator::make($request->all(), [
-            'username' => 'required',
-            'nama' => 'required',
-            'password'=> 'required|min:5|confirmed',
-            'level_id' => 'required',
+            'user_id' => 'required|integer',
+            'pembeli' => 'required|string',
+            'penjualan_kode'=> 'required|string',
+            'penjualan_tanggal' => 'required|date',
             'image'=> 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         
@@ -27,20 +31,20 @@ class RegisterController extends Controller
 
         $image = $request->file('image');
 
-        //create user
-        $user = UserModel::create([
-            'username' => $request->username,
-            'nama' => $request->nama,
-            'password' => bcrypt($request->password),
-            'level_id'=> $request->level_id,
+        //create Beli
+        $Beli = PenjualanModel::create([
+            'user_id' => $request->user_id,
+            'pembeli' => $request->pembeli,
+            'penjualan_kode' => $request->penjualan_kode,
+            'penjualan_tanggal'=> $request->penjualan_tanggal,
             'image' => $image->hashName()
         ]);
 
         //return response JSON user is created
-        if($user){
+        if($Beli){
             return response()->json([
                 'success' => true,
-                'user' => $user,
+                'Beli' => $Beli,
             ], 201);
         }
 

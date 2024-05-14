@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\FIleUploadController;
+use App\Http\Controllers\FileUploadRenameController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\ManagerController;
@@ -132,8 +133,13 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 //jobsheet12
+//praktikum
 //menampilkan form pada fiileUpload() :
 Route::get('/file-upload', [FileUploadController::class, 'fileUpload']);        
 //pemrosesan form pada prosesFileUpload() :
 Route::post('/file-upload', [FileUploadController::class, 'prosesFileUpload']); 
 //method post digunakan karena menjadi tujuan saat form di submit //
+
+//tugas
+Route::get('/file-upload-rename', [FileUploadRenameController::class, 'fileUploadRename']);  
+Route::post('/file-upload-rename', [FileUploadRenameController::class, 'prosesFileUploadRename']); 

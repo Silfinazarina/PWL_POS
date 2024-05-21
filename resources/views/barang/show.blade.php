@@ -35,8 +35,10 @@
                         <td>{{ $barang->harga_beli }}</td>
                     </tr>
                     <tr>
-                        <th>Harga Jual</th>
-                        <td>{{ $barang->harga_jual }}</td>
+                        <th>Gambar</th>
+                        <td><img src="{{$barang->image}}" alt="{{ $barang->barang_nama }}" style="max-width: 500px; max-height: 500px;">
+                        </td>
+                        
                     </tr>
                 </table>
             @endempty
